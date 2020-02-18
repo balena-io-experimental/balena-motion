@@ -1,0 +1,24 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine
+
+ARG EXPOSE_PORT
+ENV EXPOSE_PORT ${EXPOSE_PORT}
+
+RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+
+RUN apk update && apk add --no-cache \
+    busybox \
+    ffmpeg \
+    ffmpeg-libs \
+    libintl \
+    libjpeg-turbo \
+    libmicrohttpd \
+    libwebp \
+    musl \
+    v4l-utils \
+    motion
+
+COPY motion.conf /etc/motion/motion.conf
+
+EXPOSE $EXPOSE_PORT
+
+CMD [ "/usr/bin/motion", "-n" ] 

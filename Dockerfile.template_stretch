@@ -1,0 +1,14 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:stretch
+
+ARG EXPOSE_PORT
+ENV EXPOSE_PORT ${EXPOSE_PORT}
+
+RUN apt-get update && apt-get install -y motion 
+
+WORKDIR /motion
+
+COPY motion.conf /etc/default/motion
+
+EXPOSE $EXPOSE_PORT
+
+CMD [ "/usr/bin/motion", "-n" ]
