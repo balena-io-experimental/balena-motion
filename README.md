@@ -2,7 +2,7 @@
 Live stream your device's webcam using motion.
 
 ## Getting started
-The default deployment uses Alpine, a small OS that's ideal for running this application on a Raspberry Pi Zero or any other balenaCloud-supported device. If you'd rather use Debian, make _Dockerfile.template_stretch_ your Dockerfile.
+The default deployment uses Alpine, a small OS that's ideal for running this application on a Raspberry Pi Zero or any other balenaCloud-supported device. If you'd rather use Debian, make _Dockerfile.template_stretch_ your Dockerfile.template.
 
 All the motion directives in _motion.conf_ can be modified, including the port on which your feed is available. The Dockerfile uses a balenaCloud device variable, which is added to the configuration during deployment. That same port is exposed during the build. Also be sure to set __daemon off__, otherwise your container will start and quit.
 
