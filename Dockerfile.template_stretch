@@ -1,16 +1,21 @@
 FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:stretch
 
+# Use the balenaCloud device variable
 ARG EXPOSE_PORT
 ENV EXPOSE_PORT ${EXPOSE_PORT}
 
+# Install motion
 RUN apt-get update && apt-get install -y motion 
 
-WORKDIR /motion
-
+# Add your customized config file
 COPY motion.conf /etc/default/motion
 
-RUN sed -ie "s/EXPOSE_PORT/${EXPOSE_PORT}/g" /etc/motion/motion.conf
+# Copy the start script 
+WORKDIR /motion
+COPY start.sh ./
 
+# Expose the port to access the webcam stream
 EXPOSE $EXPOSE_PORT
 
-CMD [ "/usr/bin/motion", "-n" ]
+# Start the streaming service
+CMD [ "/bin/bash", "start.sh" ] 
