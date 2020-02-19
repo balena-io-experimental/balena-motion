@@ -24,7 +24,7 @@ This application uses a standard USB webcam. Some older versions don't play nice
 
 ## Build and deploy
 ```
-$ git clone git@<nolink>github.com:jtonello/balena-motion.git
+$ git clone git\@github.com:jtonello/balena-motion.git
 $ balena push my-motion-app
 ```
 
