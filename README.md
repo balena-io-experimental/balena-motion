@@ -20,6 +20,7 @@ This application uses a standard USB webcam. Some older versions don't play nice
 ├── Dockerfile.template
 ├── Dockerfile.template_stretch
 ├── motion.conf
+├── README.md
 ```
 
 ## Build and deploy
