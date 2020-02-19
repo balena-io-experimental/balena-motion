@@ -21,4 +21,4 @@ COPY motion.conf /etc/motion/motion.conf
 
 EXPOSE $EXPOSE_PORT
 
-CMD [ "/usr/bin/motion", "-n" ] 
+CMD [ "/usr/bin/motion" ] 
