@@ -1,5 +1,5 @@
 # balena-motion
-Live stream your device's webcam using motion.
+Live stream your device's webcam using [Motion](https://motion-project.github.io/motion_config.html).
 
 ## Getting started
 The default deployment uses Alpine, a small OS that's ideal for running this application on a Raspberry Pi Zero or any other balenaCloud-supported device. If you'd rather use Debian, make _Dockerfile.template_stretch_ your Dockerfile.template.
