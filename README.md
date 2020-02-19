@@ -16,7 +16,7 @@ This application uses a standard USB webcam. Some older versions don't play nice
 
 All the motion directives in _motion.conf_ can be modified, including the port on which your feed is available. The Dockerfile uses a balenaCloud device variable, which is added to the configuration during deployment. That same port is exposed during the build. Be sure to set __daemon off__ in your _motion.conf_ file, otherwise your container will start and quit.
 
-In addition to setting the EXPOSE_PORT variable, also add these to your balenaCloud Device Configuration Custom  Configuration Variables (or fleetwide).
+In addition to setting the EXPOSE_PORT variable, also add these to your balenaCloud Device Configuration Custom  Configuration Variables (or fleetwide). Add these variables before adding a device for faster launch.
 
 | Key                                  | Value
 |--------------------------------------|----------
