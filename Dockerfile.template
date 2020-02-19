@@ -19,6 +19,8 @@ RUN apk update && apk add --no-cache \
 
 COPY motion.conf /etc/motion/motion.conf
 
+RUN sed -ie "s/EXPOSE_PORT/${EXPOSE_PORT}/g" /etc/motion/motion.conf
+
 EXPOSE $EXPOSE_PORT
 
 CMD [ "/usr/bin/motion" ] 

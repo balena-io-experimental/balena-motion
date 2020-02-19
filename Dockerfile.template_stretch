@@ -9,6 +9,8 @@ WORKDIR /motion
 
 COPY motion.conf /etc/default/motion
 
+RUN sed -ie "s/EXPOSE_PORT/${EXPOSE_PORT}/g" /etc/motion/motion.conf
+
 EXPOSE $EXPOSE_PORT
 
 CMD [ "/usr/bin/motion", "-n" ]
