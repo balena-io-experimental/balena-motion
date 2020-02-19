@@ -8,7 +8,7 @@ All the motion directives in _motion.conf_ can be modified, including the port o
 
 In addition to setting the EXPOSE_PORT variable, also add these to Device Environment Variables (or fleetwide).
 
-| Key                                  | Value
+| __Key__                              | __Value__
 |--------------------------------------|----------
 |**`BALENA_HOST_CONFIG_gpu_mem_256`**  | **`192`**
 |**`BALENA_HOST_CONFIG_gpu_mem_512`**  | **`256`**
