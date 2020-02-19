@@ -1,10 +1,13 @@
 FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine
 
+# Use the balenaCloud device variable
 ARG EXPOSE_PORT
 ENV EXPOSE_PORT ${EXPOSE_PORT}
 
+# Add the test Alpine repo, which includes motion
 RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
+# Install dependencies
 RUN apk update && apk add --no-cache \
     busybox \
     ffmpeg \
@@ -17,10 +20,18 @@ RUN apk update && apk add --no-cache \
     v4l-utils \
     motion
 
+# Remove the default configuration file
+RUN rm /etc/motion/motion-dist.conf
+
+# Add your customized config file
 COPY motion.conf /etc/motion/motion.conf
 
-RUN sed -ie "s/EXPOSE_PORT/${EXPOSE_PORT}/g" /etc/motion/motion.conf
+# Copy the start script 
+WORKDIR /motion
+COPY start.sh ./
 
+# Expose the port to access the webcam stream
 EXPOSE $EXPOSE_PORT
 
-CMD [ "/usr/bin/motion" ] 
+# Start the streaming service
+CMD [ "/bin/bash", "start.sh" ] 

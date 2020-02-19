@@ -10,14 +10,15 @@ The default deployment uses Alpine, a small OS that's ideal for running this app
 ├── Dockerfile.template_stretch
 ├── motion.conf
 ├── README.md
+├── start.sh
 ```
 This application uses a standard USB webcam. Some older versions don't play nice, but most do, and are successfully found by the system on /dev/video0.
 
-All the motion directives in _motion.conf_ can be modified, including the port on which your feed is available. The Dockerfile uses a balenaCloud device variable, which is added to the configuration during deployment. That same port is exposed during the build. Also be sure to set __daemon off__ in your _motion.conf_ file, otherwise your container will start and quit.
+All the motion directives in _motion.conf_ can be modified, including the port on which your feed is available. The Dockerfile uses a balenaCloud device variable, which is added to the configuration during deployment. That same port is exposed during the build. Be sure to set __daemon off__ in your _motion.conf_ file, otherwise your container will start and quit.
 
-In addition to setting the EXPOSE_PORT variable, also add these to your balenaCloud Device Environment Variables (or fleetwide).
+In addition to setting the EXPOSE_PORT variable, also add these to your balenaCloud Device Configuration Custom  Configuration Variables (or fleetwide).
 
-| __Key__                              | __Value__
+| Key                                  | Value
 |--------------------------------------|----------
 |**`BALENA_HOST_CONFIG_gpu_mem_256`**  | **`192`**
 |**`BALENA_HOST_CONFIG_gpu_mem_512`**  | **`256`**
