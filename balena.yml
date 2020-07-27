@@ -1,0 +1,13 @@
+applicationConfigVariables:
+  - RESIN_HOST_CONFIG_avoid_warnings: 1
+applicationEnvironmentVariables:
+  - CAMERA_NAME: my_camera
+  - DAEMON: off
+  - EXPORT_PORT: 8081
+  - FRAMERATE: 20
+  - HEIGHT: 480
+  - OUTPUT_PICTURES: off
+  - RESTRICT_LOCAL_HOST: off
+  - STREAM_QUALITY: 50
+  - TZ: America/New_York
+  - WIDTH: 640
