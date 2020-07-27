@@ -2,29 +2,26 @@
 Live stream your device's webcam using [Motion](https://motion-project.github.io/motion_config.html).
 
 ## Getting started
-The default deployment uses Alpine, a small OS that's ideal for running this application on a Raspberry Pi Zero or any other balenaCloud-supported device. If you'd rather use Debian, make _Dockerfile.template_stretch_ your Dockerfile.template.
+The default deployment uses Debian.
 
 ```
 /balena-motion/
 ├── Dockerfile.template
-├── Dockerfile.template_stretch
-├── motion.conf
+├── motion-template.conf
 ├── README.md
 ├── start.sh
 ```
 This application uses a standard USB webcam. Some older versions don't play nice, but most do, and are successfully found by the system on /dev/video0.
 
-All the motion directives in _motion.conf_ can be modified, including the port on which your feed is available. The Dockerfile uses a balenaCloud device variable, which is added to the configuration during deployment. That same port is exposed during the build. Be sure to set __daemon off__ in your _motion.conf_ file, otherwise your container will start and quit.
+All the motion directives in _motion-template.conf_ can be modified, including the port on which your feed is available. When using ```Deploy with balena``` all the variables are pre-configured for you. You can change these from the balenaCloud dashboard. Those variables include ```DAEMON``` which is set to ```off``` so the container service starts and remains running. If ```daemon``` is not set to off your container will start and quit.
 
 In addition to setting the EXPOSE_PORT variable, also add these to your balenaCloud Device Configuration Custom  Configuration Variables (or fleetwide). Add these variables before adding a device for faster launch.
 
-| Key                                  | Value
-|--------------------------------------|----------
-|**`BALENA_HOST_CONFIG_gpu_mem_256`**  | **`192`**
-|**`BALENA_HOST_CONFIG_gpu_mem_512`**  | **`256`**
-|**`BALENA_HOST_CONFIG_gpu_mem_1024`** | **`448`**
+## Deploy with balena
+[![](https://www.balena.io/deploy.png)](https://dashboard.balena-cloud.com/deploy)
 
-## Build and deploy
+
+## Alnerate manual balena build and deploy
 ```
 $ git clone git@github.com:jtonello/balena-motion.git
 $ balena push my-motion-app
