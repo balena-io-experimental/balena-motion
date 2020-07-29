@@ -1,0 +1,28 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine
+
+# Use the balenaCloud device variable
+ARG EXPOSE_PORT
+ENV EXPOSE_PORT ${EXPOSE_PORT}
+
+# Add the test Alpine repo, which includes motion
+RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+
+# Install dependencies
+RUN apk update && apk upgrade && apk add --no-cache motion
+
+    #wget && \
+    #wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
+    #wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.28-r0/glibc-2.28-r0.apk && \
+    #apk add glibc-2.28-r0.apk motion
+
+WORKDIR /motion
+
+# Copy the start script and your tempate config file
+COPY start.sh motion-template.conf ./
+
+# Expose the port to access the webcam stream
+EXPOSE $EXPOSE_PORT
+
+# Start the streaming service
+CMD ["tail","-f","/dev/null"]
+#CMD [ "/bin/bash", "start.sh" ] 
