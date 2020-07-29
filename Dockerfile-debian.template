@@ -1,0 +1,33 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:stretch 
+
+# Use the balenaCloud device variable
+ARG EXPOSE_PORT
+ENV EXPOSE_PORT ${EXPOSE_PORT}
+
+# Install dependencies
+RUN install_packages \
+    apt-utils \
+    libavcodec57 \
+    libavformat57 \
+    libavutil55 \
+    libc6 \
+    libjpeg62-turbo \
+    libswscale4 \
+    lsb-base \
+    zlib1g \
+    ffmpeg \
+    gettext \
+    motion
+
+RUN AUTO_ADDED_PACKAGES=`apt-mark showauto` && \
+    apt-get remove --purge -y $BUILD_PACKAGES $AUTO_ADDED_PACKAGES && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy the start script and your customized config file
+COPY start.sh motion-template.conf ./
+
+# Expose the port to access the webcam stream
+EXPOSE $EXPOSE_PORT
+
+# Start the streaming service
+CMD [ "/bin/bash", "start.sh" ] 

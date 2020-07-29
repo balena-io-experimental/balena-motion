@@ -1,29 +1,33 @@
-FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:stretch
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine
 
 # Use the balenaCloud device variable
 ARG EXPOSE_PORT
 ENV EXPOSE_PORT ${EXPOSE_PORT}
 
-WORKDIR /motion
+# Add the test Alpine repo, which includes motion
+RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
 # Install dependencies
-RUN install_packages \
-    libavcodec57 \
-    libavformat57 \
-    libavutil55 \
-    libc6 \
-    libjpeg62-turbo \
-    libswscale4 \
-    lsb-base \
-    zlib1g \
+RUN apk update && apk add --no-cache \
+    busybox \
     ffmpeg \
+    ffmpeg-libs \
     gettext \
+    libintl \
+    libjpeg-turbo \
+    libmicrohttpd \
+    libwebp \
+    musl \
+    v4l-utils \
+    tzdata \
     motion
 
 # Remove the default configuration file
-RUN rm /etc/motion/motion-dist.conf
+#RUN rm /etc/motion/motion-dist.conf
 
-# Copy the start script and your customized config file
+WORKDIR /motion
+
+# Copy the start script and your tempate config file
 COPY start.sh motion-template.conf ./
 
 # Expose the port to access the webcam stream
