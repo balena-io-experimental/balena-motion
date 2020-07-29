@@ -22,6 +22,7 @@ RUN apk update && apk add --no-cache \
     tzdata \
     motion
 
+RUN which motion
 # Remove the default configuration file
 #RUN rm /etc/motion/motion-dist.conf
 
