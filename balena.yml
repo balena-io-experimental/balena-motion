@@ -11,3 +11,6 @@ applicationEnvironmentVariables:
   - STREAM_QUALITY: 50
   - TZ: America/New_York
   - WIDTH: 640
+  - VIDEO_NORM: 15
+  - V4L2_PALETTE: 0
+  - VIDEO_DEVICE: /dev/video0
