@@ -1,0 +1,8 @@
+version: '2'
+services:
+  motion:
+    build: ./
+    network_mode: host
+    ports:
+      - 7836:7836
+    privileged: true
