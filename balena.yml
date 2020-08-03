@@ -1,5 +1,3 @@
-applicationConfigVariables:
-  - RESIN_HOST_CONFIG_avoid_warnings: 1
 applicationEnvironmentVariables:
   - CAMERA_NAME: my_camera
   - DAEMON: off
