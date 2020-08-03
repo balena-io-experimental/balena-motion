@@ -5,19 +5,7 @@ ARG EXPOSE_PORT
 ENV EXPOSE_PORT ${EXPOSE_PORT}
 
 # Install dependencies
-RUN install_packages \
-    apt-utils \
-    libavcodec57 \
-    libavformat57 \
-    libavutil55 \
-    libc6 \
-    libjpeg62-turbo \
-    libswscale4 \
-    lsb-base \
-    zlib1g \
-    ffmpeg \
-    gettext \
-    motion
+RUN install_packages gettext motion
 
 # Copy the start script and your customized config file
 COPY start.sh motion-template.conf ./
