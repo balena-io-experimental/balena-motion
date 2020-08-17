@@ -23,7 +23,7 @@ In addition to setting the EXPOSE_PORT variable, also add these to your balenaCl
 
 ## Alnerate manual balena build and deploy
 ```
-$ git clone git@github.com:jtonello/balena-motion.git
+$ git clone git@github.com:balenalabs-incubator/balena-motion.git
 $ balena push my-motion-app
 ```
 
