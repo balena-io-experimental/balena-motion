@@ -4,5 +4,5 @@ services:
     build: ./
     network_mode: host
     ports:
-      - 7836:7836
+      - 8081:8081
     privileged: true
